@@ -26,7 +26,6 @@ module Api
         }
       }.to_json
     end
-    
     def show
       user = User.find(params[:id])
       render json: {
@@ -37,6 +36,5 @@ module Api
         }
       }.to_json
     end
-    
   end
 end
