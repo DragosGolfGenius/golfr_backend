@@ -5,8 +5,20 @@ module Api
     before_action :validate_score_user_id, only: :destroy
 
     def user_feed
-      scores = Score.all.order(played_at: :desc, id: :desc)
+      scores = Score.all.order(played_at: :desc, id: :desc).includes(:user)
       serialized_scores = scores.map(&:serialize)
+
+      response = {
+        scores: serialized_scores,
+      }
+
+      render json: response.to_json
+    end
+
+    # gets all the scores for a user
+    def show
+      score = Score.where(user_id: params[:id]).includes(:user)
+      serialized_scores = score.map(&:serialize)
 
       response = {
         scores: serialized_scores,
