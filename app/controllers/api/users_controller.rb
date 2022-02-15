@@ -37,6 +37,5 @@ module Api
         }
       }.to_json
     end
-    
   end
 end
