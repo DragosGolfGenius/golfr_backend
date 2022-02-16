@@ -15,6 +15,18 @@ module Api
       render json: response.to_json
     end
 
+    # gets all the scores for a user
+    def show
+      score = Score.where(user_id: params[:id]).includes(:user)
+      serialized_scores = score.map(&:serialize)
+
+      response = {
+        scores: serialized_scores,
+      }
+
+      render json: response.to_json
+    end
+
     def create
       score = current_user.scores.build(score_params)
 
