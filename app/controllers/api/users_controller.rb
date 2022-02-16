@@ -29,6 +29,7 @@ module Api
 
     def show
       user = User.find(params[:id])
+      
       render json: {
         user: {
           id: user.id,
