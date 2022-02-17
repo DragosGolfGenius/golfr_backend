@@ -4,8 +4,9 @@
 class Score < ApplicationRecord
   belongs_to :user
 
-  validates :total_score, inclusion: { in: 54..120 }
+  validates :number_of_scores, presence: true, inclusion: { in: [9, 18] }
   validate :future_score
+  validate :correct_total_score
 
   def serialize
     {
@@ -14,12 +15,18 @@ class Score < ApplicationRecord
       user_name: user.name,
       total_score: total_score,
       played_at: played_at,
+      number_of_scores: number_of_scores,
     }
   end
 
   private
 
-  def future_score
-    errors.add(:played_at, 'must not be in the future') if played_at > Time.zone.today
-  end
+    def future_score
+      errors.add(:played_at, 'must not be in the future') if played_at > Time.zone.today
+    end
+
+    def correct_total_score
+      errors.add(:total_score, 'must be between [27, 90)')  if number_of_scores == 9 && (total_score < 27 || total_score >= 90)
+      errors.add(:total_score, 'must be between [90, 180)') if number_of_scores == 18 && (total_score < 90 || total_score >= 180)
+    end
 end

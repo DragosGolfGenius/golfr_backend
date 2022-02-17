@@ -30,10 +30,12 @@ rng = Random.new
 now = Time.zone.today
 User.all.each do |user|
   5.times do |i|
+    bef_pick = rng.rand(2)
     Score.create!(
       user: user,
-      total_score: rng.rand(66..99),
-      played_at: now - 5.days + i.days
+      total_score: bef_pick == 0 ? rng.rand(27..90) : rng.rand(90..180),
+      played_at: now - 5.days + i.days,
+      number_of_scores: bef_pick == 0 ? 9 : 18
     )
   end
 end
