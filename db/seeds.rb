@@ -30,7 +30,7 @@ rng = Random.new
 now = Time.zone.today
 User.all.each do |user|
   5.times do |i|
-    type_of_game = [9, 18].sample(1)[0]
+    type_of_game = [9, 18].sample(1).first
     Score.create!(
       user: user,
       total_score: type_of_game == 9 ? rng.rand(27..90) : rng.rand(90..180),
