@@ -17,7 +17,7 @@ module Api
 
     # gets all the scores for a user
     def show
-      score = Score.where(user_id: params[:id]).includes(:user)
+      score = Score.where(user_id: params[:id])
       serialized_scores = score.map(&:serialize)
 
       response = {
