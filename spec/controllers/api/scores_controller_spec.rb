@@ -6,17 +6,20 @@ describe Api::ScoresController, type: :request do
     user2 = create(:user, name: 'User2', email: 'user2@email.com', password: 'userpass')
     sign_in(@user1, scope: :user)
 
-    @score1 = create(:score, 
+    @score1 = create(
+      :score,
       user: @user1,
       total_score: 79,
       played_at: '2021-05-20',
       number_of_scores: 9)
-    @score2 = create(:score, 
+    @score2 = create(
+      :score,
       user: user2,
       total_score: 99,
       played_at: '2021-06-20',
       number_of_scores: 18)
-    @score3 = create(:score, 
+    @score3 = create(
+      :score,
       user: user2,
       total_score: 68,
       played_at: '2021-06-13',
