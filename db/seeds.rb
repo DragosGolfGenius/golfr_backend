@@ -33,9 +33,9 @@ User.all.each do |user|
     bef_pick = rng.rand(2)
     Score.create!(
       user: user,
-      total_score: bef_pick == 0 ? rng.rand(27..90) : rng.rand(90..180),
+      total_score: bef_pick.zero? ? rng.rand(27..90) : rng.rand(90..180),
       played_at: now - 5.days + i.days,
-      number_of_scores: bef_pick == 0 ? 9 : 18
+      number_of_scores: bef_pick.zero? ? 9 : 18
     )
   end
 end
