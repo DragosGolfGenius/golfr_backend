@@ -52,9 +52,9 @@ describe Api::ScoresController, type: :request do
 
       post api_scores_path, params: { score:
         {
-        total_score: 79,
-        played_at: '2021-06-29',
-        number_of_scores: 9
+          total_score: 79,
+          played_at: '2021-06-29',
+          number_of_scores: 9
         }}
 
       expect(response).to have_http_status(:ok)
