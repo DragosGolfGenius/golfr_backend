@@ -50,7 +50,8 @@ describe Api::ScoresController, type: :request do
     it 'should save and return the new score if valid parameters' do
       score_count = Score.count
 
-      post api_scores_path, params: { score: {
+      post api_scores_path, params: { score:
+        {
         total_score: 79,
         played_at: '2021-06-29',
         number_of_scores: 9
